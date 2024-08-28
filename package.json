@@ -1,0 +1,27 @@
+{
+  "name": "typescript-dojo1-mds",
+  "version": "1.0.0",
+  "description": "Javascript Widgets mit Dojo1 + Typescript der more dimensions gmbh",
+  "main": "main.js",
+  "scripts": {
+    "build": "concurrently \"npm run compileTsToJs\" \"npm run copyHtmlFiles\" \"npm run copyCssFiles\"",
+    "compileTsToJs": "tsc",
+    "copyHtmlFiles": "copyfiles -u 1 Typescript/**/*.html javascript/",
+    "copyCssFiles": "copyfiles -u 1 Typescript/**/*.css javascript/"
+  },
+  "author": "ferdinand weinberger",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "4.1",
+    "concurrently": "^5.0.0",
+    "copyfiles": "^2.1.0",
+    "dojo-typings": "^1.0.0",
+    "dojox": "^1.0.0"
+  },
+  "dependencies": {
+    "@types/tabulator-tables": "^4.9.4",
+    "gridstack": "^5.0.0",
+    "http-server": "^14.1.1",
+    "typescript": "^4.6.3"
+  }
+}

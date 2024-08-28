@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+      "target": "ES5",
+      "module": "amd",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      //"outFile": "_build/release.js",
+      "outDir": "javascript",
+      "sourceMap": true,
+      "experimentalDecorators": true,
+      "allowJs": true,
+      "checkJs": false,
+      "esModuleInterop": false,
+      "sourceRoot": "/typescript",
+      "noImplicitUseStrict": true // unterbindet "use strict"; in zieldateien
+    },
+    "compileOnSave": true,
+    "include": [
+      "./TypeScript/**/*.*",
+      "./node_modules/dojo-typings/dojo/1.11/index.d.ts",
+      "./node_modules/dojo-typings/dojo/1.11/modules.d.ts",
+      "./node_modules/dojo-typings/dijit/1.11/index.d.ts",
+      "./node_modules/dojo-typings/dijit/1.11/modules.d.ts",
+      "./node_modules/dojo-typings/dojox/1.11/index.d.ts",
+      "./node_modules/dojo-typings/dojox/1.11/modules.d.ts"
+    ],
+    "exclude": [
+      //"./Typescript/WidgetCollection/PEP"
+    ]
+  }
