@@ -9,7 +9,7 @@
       "sourceMap": true,
       "experimentalDecorators": true,
       "allowJs": true,
-      "checkJs": false,
+      "checkJs": true,
       "esModuleInterop": false,
       "sourceRoot": "/typescript",
       "noImplicitUseStrict": true // unterbindet "use strict"; in zieldateien

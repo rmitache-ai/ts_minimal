@@ -9,17 +9,49 @@ define(["require", "exports", "dojo/text!./MyFirstTsWidget.html", "dijit/_Widget
         function MyFirstTsWidget() {
             this.templateString = template;
         }
-        MyFirstTsWidget.prototype.openCity = function (evt) {
-            var cityName = evt.target.innerText;
-            this.subTitle.innerText = cityName;
-            console.log("cityName", cityName);
-            var i;
-            var x = document.getElementsByClassName("city");
-            for (i = 0; i < x.length; i++) {
-                var item = x[i];
-                item.style.display = "none"; // alle anderen ausblenden
+        MyFirstTsWidget.prototype.postCreate = function () {
+            this.taskInput = this.domNode.querySelector('#taskInput');
+            this.taskList = this.domNode.querySelector('#taskList');
+        };
+        MyFirstTsWidget.prototype.addTask = function (event) {
+            event.preventDefault();
+            var taskText = this.taskInput.value.trim();
+            if (taskText) {
+                var taskItem = this.createTaskItem(taskText);
+                this.taskList.appendChild(taskItem);
+                this.taskInput.value = '';
             }
-            this[cityName].style.display = "block";
+        };
+        MyFirstTsWidget.prototype.createTaskItem = function (taskText) {
+            var _this = this;
+            var listItem = document.createElement('li');
+            listItem.className = 'w3-light-grey w3-round-large';
+            ;
+            var taskLabel = document.createElement('span');
+            taskLabel.innerText = taskText;
+            taskLabel.className = 'w3-large';
+            var buttonsContainer = document.createElement('div');
+            buttonsContainer.className = 'w3-right';
+            var completeButton = this.createButton('Complete', function () {
+                taskLabel.classList.toggle('w3-text-green');
+                taskLabel.style.textDecoration = taskLabel.style.textDecoration ? '' : 'line-through';
+            });
+            var deleteButton = this.createButton('Delete', function () {
+                _this.taskList.removeChild(listItem);
+            });
+            buttonsContainer.appendChild(completeButton);
+            buttonsContainer.appendChild(deleteButton);
+            listItem.appendChild(taskLabel);
+            listItem.appendChild(buttonsContainer);
+            return listItem;
+        };
+        MyFirstTsWidget.prototype.createButton = function (text, onClick) {
+            var button = document.createElement('button');
+            button.innerText = text;
+            button.className = 'w3-button w3-small w3-round w3-margin-left ' +
+                (text === 'Complete' ? 'w3-green' : 'w3-red');
+            button.onclick = onClick;
+            return button;
         };
         MyFirstTsWidget = __decorate([
             declare(_WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin)
